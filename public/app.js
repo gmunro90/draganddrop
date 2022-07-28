@@ -1,13 +1,42 @@
 "use strict";
 
-/* global WebsyDesigns */
-// API_KEY = 'ZV7DIFPQUWYA1LD0'
-var apiService = new WebsyDesigns.APIService('https://www.alphavantage.co');
+dragElement(document.getElementById('mydiv'));
 
-function renderData() {
-  apiService.fetchData('get', 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=IBM&outputsize=full&apikey=ZV7DIFPQUWYA1LD0').then(function (result) {
-    console.log(result);
-  });
+function dragElement(elmnt) {
+  var pos1 = 0;
+  var pos2 = 0;
+  var pos3 = 0;
+  var pos4 = 0;
+
+  if (document.getElementById(elmnt.id + 'header')) {
+    document.getElementById(elmnt.id + 'header').onmousedown = dragMouseDown;
+  } else {
+    elmnt.onmousedown = dragMouseDown;
+  }
+
+  function dragMouseDown(e) {
+    e = e || window.event;
+    e.preventDefault();
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    document.onmouseup = closeDragElement; // call a function whenever the cursor moves:
+
+    document.onmousemove = elementDrag;
+  }
+
+  function elementDrag(e) {
+    e = e || window.event;
+    e.preventDefault();
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    elmnt.style.top = elmnt.offsetTop - pos2 + 'px';
+    elmnt.style.left = elmnt.offsetLeft - pos1 + 'px';
+  }
+
+  function closeDragElement() {
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
 }
-
-renderData();
