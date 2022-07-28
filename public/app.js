@@ -1,6 +1,9 @@
 "use strict";
 
-dragElement(document.getElementById('mydiv'));
+// let whatIsClicked = window.addEventListener('click', () => {
+//   console.log('clicked')
+// })
+dragElement(document.getElementById('mydiv')) || dragElement(document.getElementById('mydiva')) || dragElement(document.getElementById('mydivb')) || dragElement(document.getElementById('mydivc')) || dragElement(document.getElementById('mydivd')) || dragElement(document.getElementById('mydive'));
 
 function dragElement(elmnt) {
   var pos1 = 0;
@@ -8,10 +11,8 @@ function dragElement(elmnt) {
   var pos3 = 0;
   var pos4 = 0;
 
-  if (document.getElementById(elmnt.id + 'header')) {
-    document.getElementById(elmnt.id + 'header').onmousedown = dragMouseDown;
-  } else {
-    elmnt.onmousedown = dragMouseDown;
+  if (document.getElementById(elmnt.id)) {
+    document.getElementById(elmnt.id).onmousedown = dragMouseDown;
   }
 
   function dragMouseDown(e) {
@@ -30,10 +31,12 @@ function dragElement(elmnt) {
     pos1 = pos3 - e.clientX;
     pos2 = pos4 - e.clientY;
     pos3 = e.clientX;
-    pos4 = e.clientY;
+    pos4 = e.clientY; // set the element's new position:
+
     elmnt.style.top = elmnt.offsetTop - pos2 + 'px';
     elmnt.style.left = elmnt.offsetLeft - pos1 + 'px';
-  }
+  } // stop moving when mouse button is released:
+
 
   function closeDragElement() {
     document.onmouseup = null;
