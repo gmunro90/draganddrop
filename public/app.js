@@ -1,9 +1,6 @@
 "use strict";
 
-// let whatIsClicked = window.addEventListener('click', () => {
-//   console.log('clicked')
-// })
-dragElement(document.getElementById('mydiv')) || dragElement(document.getElementById('mydiva')) || dragElement(document.getElementById('mydivb')) || dragElement(document.getElementById('mydivc')) || dragElement(document.getElementById('mydivd')) || dragElement(document.getElementById('mydive'));
+dragElement(document.getElementById('mydiv')) || dragElement(document.getElementById('mydiva')) || dragElement(document.getElementById('mydivb')) || dragElement(document.getElementById('mydivc')) || dragElement(document.getElementById('mydivd')) || dragElement(document.getElementById('mydive')); // get this dynamic with classes, this.whatever_mydiv (like in slider or bookmark)
 
 function dragElement(elmnt) {
   var pos1 = 0;
@@ -35,6 +32,7 @@ function dragElement(elmnt) {
 
     elmnt.style.top = elmnt.offsetTop - pos2 + 'px';
     elmnt.style.left = elmnt.offsetLeft - pos1 + 'px';
+    elmnt.style.zindex = '10';
   } // stop moving when mouse button is released:
 
 
